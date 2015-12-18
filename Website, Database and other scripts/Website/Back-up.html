@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <body>
+
+        <audio autoplay id="audio">
+            <source src=""></source>
+            Your browser does not support the audio element.
+        </audio>
+
+        
+        <script>
+            function changeAud(Source)
+            {
+                var a = document.getElementById("audio");
+                alert("de URL ");
+                audio.setAttribute("src", Source);
+                audio.load();
+            }
+        </script>
+
+        <script>
+            function getURL(ip, localTrackId)
+            {
+                var protocol = "http://";
+                var poort = ":8080";
+                var requestVar = "/play?trackid=";
+
+                xmlhttp = new XMLHttpRequest();
+
+                xmlhttp.onreadystatechange = function ()
+                {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                    {
+                        document.getElementById("audio").setAttribute("src", xmlhttp.responseText);
+                    }
+                };
+                xmlhttp.open("GET", protocol + ip + poort + requestVar + localTrackId, true);
+                xmlhttp.send();
+            }
+        </script>
+        
+        <button type="button" onclick="javascript:getURL('127.0.0.1', 1)">Alles naar de bertverderrie</button>
+
+    </body>
+</html>

@@ -1,0 +1,11 @@
+driver: com.mysql.jdbc.Driver
+username: datasolutions
+password: jukebox
+serverlocation: jdbc:mysql://192.168.0.105/jukebox
+server:
+  applicationConnectors:
+  - type: http
+    port: 8100
+  adminConnectors:
+  - type: http
+    port: 8101

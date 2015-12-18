@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Common/Common.iml" filepath="$PROJECT_DIR$/Common/Common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ImportService/ImportService.iml" filepath="$PROJECT_DIR$/ImportService/ImportService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JukeBoxInfoSupport1.iml" filepath="$PROJECT_DIR$/JukeBoxInfoSupport1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PlaylistContentManagementService/PlaylistContentManagementService.iml" filepath="$PROJECT_DIR$/PlaylistContentManagementService/PlaylistContentManagementService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PlaylistGetService/PlaylistGetService.iml" filepath="$PROJECT_DIR$/PlaylistGetService/PlaylistGetService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PlaylistManagementService/PlaylistManagementService.iml" filepath="$PROJECT_DIR$/PlaylistManagementService/PlaylistManagementService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RateService/RateService.iml" filepath="$PROJECT_DIR$/RateService/RateService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SearchService/SearchService.iml" filepath="$PROJECT_DIR$/SearchService/SearchService.iml" />
+    </modules>
+  </component>
+</project>

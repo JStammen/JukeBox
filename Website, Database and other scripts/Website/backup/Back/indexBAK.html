@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB">
+<head>
+    <title>Jukebox</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="robots" content="index, follow"/>
+    <link rel="stylesheet" type="text/css" href="screen.css" media="screen"/>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+
+<div id="main">
+    <div id="header">
+        <ul id="navlist">
+            <li><a href="#">Home</a></li>
+            <li><a href="javascript:void(0)"
+                   onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">Import</a>
+            </li>
+            <div id="light" class="white_content"><h2>Upload your track here. </h2>
+
+                <form action="http://192.168.0.104:8080/import" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="fileToUpload" id="fileToUpload">
+                    <input type="text" name="Title" placeholder="Fill in track title">
+                    <input type="text" name="Artist" placeholder="Fill in artist name">
+                    <input type="submit" value="Submit" name="submit">
+                </form>
+
+                <a href="javascript:void(0)"
+                   onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">Close</a>
+            </div>
+            <div id="fade" class="black_overlay">
+            </div>
+        </ul>
+    </div>
+
+    <div class="colmask threecol">
+        <div class="colmid">
+            <div class="colleft">
+                <div class="col1">
+                    <h2>Filter</h2>
+
+                    <div id="table-scroll">
+                        <table id="container" border="1px;">
+
+                        </table>
+                    </div>
+
+                    <script type="text/javascript">
+
+                        $(document).ready(function () {
+                            searchbycriteria("%");
+                            $('#zoeken').bind('click', function (e) {
+                                searchbycriteria($('form input[name=criteria]').val());
+                                e.preventDefault();
+                                return false;
+
+                            });
+                        });
+
+                        function searchbycriteria(criteria) {
+                            $.getJSON("http://192.168.0.106:8080/search?criteria=" + criteria, function (data) {
+                                $("#container").html("");
+                                var headerTr$ = $('<tr\>');
+                                headerTr$.append("<th>" + "Title" + "</th>");
+                                headerTr$.append("<th>" + "Artist" + "</th>");
+                                headerTr$.append("<th>" + "Album" + "</th>");
+                                headerTr$.append("<th>" + "Duration" + "</th>");
+                                headerTr$.append("<th>" + "Add" + "</th>");
+
+                                $("#container").append(headerTr$);
+
+                                var tr;
+                                for (var i = 0; i < data.length; i++) {
+                                    tr = $('<tr/>');
+                                    tr.append("<td>" + data[i].title + "</td>");
+                                    tr.append("<td>" + data[i].artist.artistName + "</td>");
+                                    tr.append("<td>" + data[i].album.name + "</td>");
+                                    tr.append("<td>" + data[i].duration + "</td>");
+                                    tr.append("<td> <img src='add-icon.png'>  </td>");
+
+                                    $("#container").append(tr);
+                                }
+                            }).error(function (jqXHR, textStatus, errorThrown) {
+                                $("#container").html(jqXHR.responseText);
+                                console.log("error " + textStatus);
+                                console.log("incoming Text " + jqXHR.responseText);
+                            });
+                        }
+
+                    </script>
+
+                </div>
+                <div class="col2">
+                    <h2>Music</h2>
+
+                    <form>
+                        <input type="text" name="criteria" class="search rounded" placeholder="Search...">
+                        <input type="submit" value="Search" id="zoeken" style="display: none;">
+                    </form>
+                </div>
+                <div class="col3">
+                    <h2>Information</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer">
+        <p> &copy;D5-Tech, DataSolutions 2014</p>
+    </div>
+
+</div>
+
+
+</body>
+
+</html>
